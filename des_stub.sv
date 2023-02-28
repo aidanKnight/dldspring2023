@@ -122,8 +122,8 @@ module GenerateKeys (Key, SubKey1, SubKey2, SubKey3, SubKey4,
 	assign SubKey2 =  {x2,y2};//combining then back together
 	
 //subkey3
-	assign x3 = {left_block3[25:0], left_block3[27]};
-	assign y3 = {right_block3[25:0], right_block3[27]};//shifting bits left once
+	assign x3 = {left_block3[25:0], left_block3[27:26]};// need to do 26 wit 27
+	assign y3 = {right_block3[25:0], right_block3[27:26]};//shifting bits left once
 
 	assign left_block3 = x3;
 	assign right_block3 = y3;
