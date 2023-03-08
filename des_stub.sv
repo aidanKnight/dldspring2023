@@ -70,167 +70,137 @@ module GenerateKeys (Key, SubKey1, SubKey2, SubKey3, SubKey4,
 //left blocks
 
 	logic [27:0] left_block1;
-	logic [27:0] left_block2;
-	logic [27:0] left_block3;
-	logic [27:0] left_block4;
-	logic [27:0] left_block5;
-	logic [27:0] left_block6;
-	logic [27:0] left_block7;
-	logic [27:0] left_block8;
-	logic [27:0] left_block9;
-	logic [27:0] left_block10;
-	logic [27:0] left_block11;
-	logic [27:0] left_block12;
-	logic [27:0] left_block13;
-	logic [27:0] left_block14;
-	logic [27:0] left_block15;
-	logic [27:0] left_block16;
+
 
 //right blocks
 	logic [27:0] right_block1;
-	logic [27:0] right_block2;
-	logic [27:0] right_block3;
-	logic [27:0] right_block4;
-	logic [27:0] right_block5;
-	logic [27:0] right_block6;
-	logic [27:0] right_block7;
-	logic [27:0] right_block8;
-	logic [27:0] right_block9;
-	logic [27:0] right_block10;
-	logic [27:0] right_block11;
-	logic [27:0] right_block12;
-	logic [27:0] right_block13;
-	logic [27:0] right_block14;
-	logic [27:0] right_block15;
-	logic [27:0] right_block16;
+
 
 //subkey1
+
+PC1 PC1_Sub1(Key, left_block1,right_block1);
+
 	assign x1 = {left_block1[26:0], left_block1[27]};
 	assign y1 = {right_block1[26:0], right_block1[27]};//shifting bits left once
 
-	assign left_block1 = x1;
-	assign right_block1 = y1;
-	assign SubKey1 =  {x1,y1};//combining then back together
+
+	PC2 PC2_Sub1 (.left_block(x1),.right_block(y1),.subkey(SubKey1));
 	
 //subkey2
-	assign x2 = {left_block2[26:0], left_block2[27]};
-	assign y2 = {right_block2[26:0], right_block2[27]};//shifting bits left once
 
-	assign left_block2 = x2;
-	assign right_block2 = y2;
-	assign SubKey2 =  {x2,y2};//combining then back together
+	assign x2 = {x1[26:0], x1[27]};
+	assign y2 = {y1[26:0], y1[27]};//shifting bits left once
+
+	PC2 PC2_Sub2 (.left_block(x2),.right_block(y2),.subkey(SubKey2));
 	
 //subkey3
-	assign x3 = {left_block3[25:0], left_block3[27]};
-	assign y3 = {right_block3[25:0], right_block3[27]};//shifting bits left once
+	assign x3 = {x2[25:0], x2[27:26]};
+	assign y3 = {y2[25:0], y2[27:26]};//shifting bits left once
 
-	assign left_block3 = x3;
-	assign right_block3 = y3;
-	assign SubKey3 =  {x3,y3};//combining then back together
+
+	//assign SubKey3 =  {x3,y3};//combining then back together
+PC2 PC2_Sub3 (.left_block(x3),.right_block(y3),.subkey(SubKey3));
 
 //subkey4
-	assign x4 = {left_block4[25:0], left_block4[27]};
-	assign y4 = {right_block4[25:0], right_block4[27]};//shifting bits left once
+	assign x4 = {x3[25:0], x3[27:26]};
+	assign y4 = {y3[25:0], y3[27:26]};//shifting bits left once
 
-	assign left_block4 = x4;
-	assign right_block4 = y4;
-	assign SubKey4 =  {x4,y4};//combining then back together
-
+	//assign SubKey4 =  {x4,y4};//combining then back together
+PC2 PC2_Sub4 (.left_block(x4),.right_block(y4),.subkey(SubKey4));
 //subkey5
-	assign x5 = {left_block5[25:0], left_block5[27]};
-	assign y5 = {right_block5[25:0], right_block5[27]};//shifting bits left once
+	assign x5 = {x4[25:0], x4[27:26]};
+	assign y5 = {y4[25:0], y4[27:26]};//shifting bits left once
 
-	assign left_block5 = x5;
-	assign right_block5 = y5;
-	assign SubKey5 =  {x5,y5};//combining then back together
+
+	//assign SubKey5 =  {x5,y5};//combining then back together
+PC2 PC2_Sub5 (.left_block(x5),.right_block(y5),.subkey(SubKey5));
 
 //subkey6
-	assign x6 = {left_block6[25:0], left_block6[27]};
-	assign y6 = {right_block6[25:0], right_block6[27]};//shifting bits left once
+	assign x6 = {x5[25:0], x5[27:26]};
+	assign y6 = {y5[25:0], y5[27:26]};//shifting bits left once
 
-	assign left_block6 = x6;
-	assign right_block6 = y6;
-	assign SubKey6 =  {x6,y6};//combining then back together
+	//assign SubKey6 =  {x6,y6};//combining then back together
+	PC2 PC2_Sub6 (.left_block(x6),.right_block(y6),.subkey(SubKey6));
 
 //subkey7
-	assign x7 = {left_block7[25:0], left_block7[27]};
-	assign y7 = {right_block7[25:0], right_block7[27]};//shifting bits left once
+	assign x7 = {x6[25:0], x6[27:26]};
+	assign y7 = {y6[25:0], y6[27:26]};//shifting bits left once
 
-	assign left_block7 = x7;
-	assign right_block7 = y7;
-	assign SubKey7 =  {x7,y7};//combining then back together
+
+	//assign SubKey7 =  {x7,y7};//combining then back together
+	PC2 PC2_Sub7 (.left_block(x7),.right_block(y7),.subkey(SubKey7));
 
 //subkey8
-	assign x8 = {left_block8[25:0], left_block8[27]};
-	assign y8 = {right_block8[25:0], right_block8[27]};//shifting bits left once
+	assign x8 = {x7[25:0], x7[27:26]};
+	assign y8 = {y7[25:0], y7[27:26]};//shifting bits left once
 
-	assign left_block8 = x8;
-	assign right_block8 = y8;
-	assign SubKey8 =  {x8,y8};//combining then back together
+
+	//assign SubKey8 =  {x8,y8};//combining then back together
+	PC2 PC2_Sub8 (.left_block(x8),.right_block(y8),.subkey(SubKey8));
 
 //subkey9
-	assign x9 = {left_block9[26:0], left_block9[27]};
-	assign y9 = {right_block9[26:0], right_block9[27]};//shifting bits left once
+	assign x9 = {x8[26:0], x8[27]};
+	assign y9 = {y8[26:0], y8[27]};//shifting bits left once
 
-	assign left_block9 = x9;
-	assign right_block9 = y9;
-	assign SubKey9 =  {x9,y9};//combining then back together
+
+	//assign SubKey9 =  {x9,y9};//combining then back together
+	PC2 PC2_Sub9 (.left_block(x9),.right_block(y9),.subkey(SubKey9));
 
 //subkey10
-	assign x10 = {left_block10[25:0], left_block10[27]};
-	assign y10 = {right_block10[25:0], right_block10[27]};//shifting bits left once
+	assign x10 = {x9[25:0], x9[27:26]};
+	assign y10 = {y9[25:0], y9[27:26]};//shifting bits left once
 
-	assign left_block10 = x10;
-	assign right_block10 = y10;
-	assign SubKey10 =  {x10,y10};//combining then back together
+
+	//assign SubKey10 =  {x10,y10};//combining then back together
+	PC2 PC2_Sub10 (.left_block(x10),.right_block(y10),.subkey(SubKey10));
 
 //subkey11
-	assign x11 = {left_block11[25:0], left_block11[27]};
-	assign y11 = {right_block11[25:0], right_block11[27]};//shifting bits left once
+	assign x11 = {x10[25:0], x10[27:26]};
+	assign y11 = {y10[25:0], y10[27:26]};//shifting bits left once
 
-	assign left_block11 = x11;
-	assign right_block11 = y11;
-	assign SubKey11 =  {x11,y11};//combining then back together
+
+	//assign SubKey11 =  {x11,y11};//combining then back together
+	PC2 PC2_Sub11 (.left_block(x11),.right_block(y11),.subkey(SubKey11));
 
 //subkey12
-	assign x12 = {left_block12[25:0], left_block12[27]};
-	assign y12 = {right_block12[25:0], right_block12[27]};//shifting bits left once
+	assign x12 = {x11[25:0], x11[27:26]};
+	assign y12 = {y11[25:0], y11[27:26]};//shifting bits left once
 
-	assign left_block12 = x12;
-	assign right_block12 = y12;
-	assign SubKey12 =  {x12,y12};//combining then back together
+
+	//assign SubKey12 =  {x12,y12};//combining then back together
+	PC2 PC2_Sub12 (.left_block(x12),.right_block(y12),.subkey(SubKey12));
 
 //subkey13
-	assign x13 = {left_block13[25:0], left_block13[27]};
-	assign y13 = {right_block13[25:0], right_block13[27]};//shifting bits left once
+	assign x13 = {x12[25:0], x12[27:26]};
+	assign y13 = {y12[25:0], y12[27:26]};//shifting bits left once
 
-	assign left_block13 = x13;
-	assign right_block13 = y13;
-	assign SubKey13 =  {x13,y13};//combining then back together
+
+	//assign SubKey13 =  {x13,y13};//combining then back together
+	PC2 PC2_Sub13 (.left_block(x13),.right_block(y13),.subkey(SubKey13));
 
 //subkey14
-	assign x14 = {left_block14[25:0], left_block14[27]};
-	assign y14 = {right_block14[25:0], right_block14[27]};//shifting bits left once
+	assign x14 = {x13[25:0], x13[27:26]};
+	assign y14 = {y13[25:0], y13[27:26]};//shifting bits left once
 
-	assign left_block14 = x14;
-	assign right_block14 = y14;
-	assign SubKey14 =  {x14,y14};//combining then back together
+
+	//assign SubKey14 =  {x14,y14};//combining then back together
+	PC2 PC2_Sub14 (.left_block(x14),.right_block(y14),.subkey(SubKey14));
 
 //subkey15
-	assign x15 = {left_block15[25:0], left_block15[27]};
-	assign y15 = {right_block15[25:0], right_block15[27]};//shifting bits left once
+	assign x15 = {x14[25:0], x14[27:26]};
+	assign y15 = {y14[25:0], y14[27:26]};//shifting bits left once
 
-	assign left_block15 = x15;
-	assign right_block15 = y15;
-	assign SubKey15 =  {x15,y15};//combining then back together
+
+	//assign SubKey15 =  {x15,y15};//combining then back together
+	PC2 PC2_Sub15 (.left_block(x15),.right_block(y15),.subkey(SubKey15));
 
 //subkey16
-	assign x16 = {left_block16[26:0], left_block16[27]};
-	assign y16 = {right_block16[26:0], right_block16[27]};//shifting bits left once
+	assign x16 = {x15[26:0], x15[27]};
+	assign y16 = {y15[26:0], y15[27]};//shifting bits left once
 
-	assign left_block16 = x16;
-	assign right_block16= y16;
-	assign SubKey16 =  {x16,y16};//combining then back together
+
+	//assign SubKey16 =  {x16,y16};//combining then back together
+	PC2 PC2_Sub16 (.left_block(x16),.right_block(y16),.subkey(SubKey16));
 
 endmodule//key gen
 
@@ -240,7 +210,7 @@ module PC1 (key, left_block, right_block);
    output logic [27:0] left_block;
    output logic [27:0] right_block;
    
-   logic [55:0]        out_block;
+  
 
 	assign left_block[27] = key[64-57];
 	assign left_block[26] = key[64-49];
@@ -336,27 +306,27 @@ module PC2 (left_block, right_block, subkey);
 	assign subkey[25] =in_block[47-13];
 	assign subkey[24] =in_block[47-2];
 	assign subkey[23] =in_block[47-41];
-	assign subkey[22] =in_block[47-52];
+	assign subkey[22] =in_block[52-47];
 	assign subkey[21] =in_block[47-31];
 	assign subkey[20] =in_block[47-37];
 
 	assign subkey[19]= in_block[47-47];
-	assign subkey[18]= in_block[47-55];
+	assign subkey[18]= in_block[55-47];
 	assign subkey[17]= in_block[47-30];
 	assign subkey[16]= in_block[47-40];
-	assign subkey[15]= in_block[47-51];
+	assign subkey[15]= in_block[51-47];
 	assign subkey[14]= in_block[47-45];
 	assign subkey[13]= in_block[47-33];
-	assign subkey[12]= in_block[47-48];
+	assign subkey[12]= in_block[48-47];
 	assign subkey[11]= in_block[47-44];
-	assign subkey[10]= in_block[47-49];
+	assign subkey[10]= in_block[49-47];
 	assign subkey[9]= in_block[47-39];
-	assign subkey[8]= in_block[47-56];
+	assign subkey[8]= in_block[56-47];
 	assign subkey[7]= in_block[47-34];
-	assign subkey[6]= in_block[47-53];
+	assign subkey[6]= in_block[53-47];
 	assign subkey[5]= in_block[47-46];
 	assign subkey[4]= in_block[47-42];
-	assign subkey[3]= in_block[47-50];
+	assign subkey[3]= in_block[50-47];
 	assign subkey[2]= in_block[47-36];
 	assign subkey[1] =in_block[47-29];
 	assign subkey[0] =in_block[47-32];
@@ -391,7 +361,7 @@ module SF (inp_block, out_block);
    assign out_block[14]=inp_block[31-8];
    assign out_block[13]=inp_block[31-24];
    assign out_block[12]=inp_block[31-14];
-   assign out_block[11]=inp_block[31-32];
+   assign out_block[11]=inp_block[32-31];
    assign out_block[10]=inp_block[31-27];
    assign out_block[9]=inp_block[31-3];
    assign out_block[8]=inp_block[31-9];
@@ -467,57 +437,51 @@ module EF (inp_block, out_block);
 
 endmodule // EF
 
-module feistel (right_in, subkey, fout);
+module feistel (inp_block, subkey, out_block);
 
-   input logic [31:0]  right_in;
+   input logic [31:0]  inp_block;
    input logic [47:0]  subkey;
-   output logic [31:0] fout;
+   output logic [31:0] out_block;
    
    logic [47:0] Exout;
 
-   EF e1 (right_in, Exout);
+   EF e1 (.inp_block(inp_block),.out_block(Exout));
 
     logic [47:0] foo;
     logic [31:0] result;
 
-  assign foo = Exout ^ subkey;
+  assign foo = Exout^subkey;
 
-S1_Box(foo[47:42],result[31:28]);
-S2_Box(foo[41:36],result[27:24]);
-S3_Box(foo[35:30],result[23:20]);
-S4_Box(foo[29:24],result[19:16]);
-S5_Box(foo[23:18],result[15:12]);
-S6_Box(foo[17:12],result[11:8]);
-S7_Box(foo[11:6],result[7:4]);
-S8_Box(foo[5:0],result[3:0]);
+S1_Box s1(.inp_bits(foo[47:42]),.out_bits(result[31:28]));
+S2_Box s2(.inp_bits(foo[41:36]),.out_bits(result[27:24]));
+S3_Box s3(.inp_bits(foo[35:30]),.out_bits(result[23:20]));
+S4_Box s4(.inp_bits(foo[29:24]),.out_bits(result[19:16]));
+S5_Box s5(.inp_bits(foo[23:18]),.out_bits(result[15:12]));
+S6_Box s6(.inp_bits(foo[17:12]),.out_bits(result[11:8]));
+S7_Box s7(.inp_bits(foo[11:6]),.out_bits(result[7:4]));
+S8_Box s8(.inp_bits(foo[5:0]),.out_bits(result[3:0]));
 
-SF s1(result,fout);
-   
-
-
-
+SF sf1(.inp_block(result),.out_block(out_block));
 
 endmodule // Feistel
 
 // DES block round
-module round (right_in,,left_in, subkey, right_out, left_out);
+module round (left_in, right_in, subkey, left_out, right_out);
 
    input logic [31:0]  right_in;
    input logic [31:0]  left_in;
    input logic [47:0]  subkey;
-   //output logic [63:0] out_block;  //if=dk if i need this
    output logic [31:0]  right_out;
    output logic [31:0]  left_out;
 
    logic[31:0] fout;
 
+
    assign left_out = right_in;
 
    feistel f1(right_in,subkey,fout);
+   assign right_out = left_in^fout;//set to ro
 
-   assign Final = left_in ^ fout;
-
-   assign right_out = Final;
 
 
 endmodule // round1
@@ -1295,17 +1259,68 @@ endmodule // S8_Box
 module DES (input logic [63:0] key, input logic [63:0] plaintext, 
 	    input logic encrypt, output logic [63:0] ciphertext);
 
-   logic [47:0] 	SubKey1, SubKey2, SubKey3, SubKey4;   
-   logic [47:0] 	SubKey5, SubKey6, SubKey7, SubKey8;   
-   logic [47:0] 	SubKey9, SubKey10, SubKey11, SubKey12;
-   logic [47:0] 	SubKey13, SubKey14, SubKey15, SubKey16;
+     logic [47:0] SubKey1;
+	 logic [47:0] SubKey2;
+	 logic [47:0] SubKey3;
+	 logic [47:0] SubKey4;
+	 logic [47:0] SubKey5;
+	 logic [47:0] SubKey6;
+	 logic [47:0] SubKey7;
+	 logic [47:0] SubKey8;
+	 logic [47:0] SubKey9;
+	 logic [47:0] SubKey10;
+	 logic [47:0] SubKey11;
+	 logic [47:0] SubKey12;
+	 logic [47:0] SubKey13;
+	 logic [47:0] SubKey14;
+	 logic [47:0] SubKey15;
+	 logic [47:0] SubKey16;
 
-   logic [63:0] 	ip_out;   
-   logic [63:0] 	r16_out = 64'h0; 
+	 //intL	
+	logic[31:0] intL1;
+	logic[31:0] intL2;
+	logic[31:0] intL3;
+	logic[31:0] intL4;
+	logic[31:0] intL5;
+	logic[31:0] intL6;
+	logic[31:0] intL7;
+	logic[31:0] intL8;
+	logic[31:0] intL9;
+	logic[31:0] intL10;
+	logic[31:0] intL11;
+	logic[31:0] intL12;
+	logic[31:0] intL13;
+	logic[31:0] intL14;
+	logic[31:0] intL15;
+	logic[31:0] intL16;
+	
+//intR
+	logic[31:0] intR1;
+	logic[31:0] intR2;
+	logic[31:0] intR3;
+	logic[31:0] intR4;
+	logic[31:0] intR5;
+	logic[31:0] intR6;
+	logic[31:0] intR7;
+	logic[31:0] intR8;
+	logic[31:0] intR9;
+	logic[31:0] intR10;
+	logic[31:0] intR11;
+	logic[31:0] intR12;
+	logic[31:0] intR13;
+	logic[31:0] intR14;
+	logic[31:0] intR15;
+	logic[31:0] intR16;
+
+logic [63:0] 	ip_out;   
+logic [63:0] 	r16_out = 64'h0; 
+logic[31:0] left;
+logic[31:0] right;
+
 	assign left= ip_out[63:32];
    	assign right= ip_out[31:0];
-	logic[31:0] intL;
-	logic[31:0] intR;
+	
+
 
 
    // SubKey generation
@@ -1313,45 +1328,102 @@ module DES (input logic [63:0] key, input logic [63:0] plaintext,
 		    SubKey5, SubKey6, SubKey7, SubKey8,
 		    SubKey9, SubKey10, SubKey11, SubKey12,
 		    SubKey13, SubKey14, SubKey15, SubKey16);
+
    // encrypt (encrypt=1) or decrypt (encrypt=0) 
 
    // Initial Permutation (IP)
    IP b1 (plaintext, ip_out);
-   // round 1
-		round r1(left,right,intL,intR)
-   // round 2
-		round r2(intL,intR,subkey2,)
-   // round 3
-		round r3
-   // round 4
-		round r4
-   // round 5
-		round r5
-   // round 6
-		round r6
-   // round 7
-		round r7
-   // round 8
-		round r8
-   // round 9
-		round r9
-   // round 10
-		round r10
-   // round 11
-		round r11
-   // round 12
-		round r12
-   // round 13
-		round r13
-   // round 14
-		round r14
-   // round 15
-		round r15
-   // round 16
-		round r16
-   // Final Permutation (IP^{-1}) (swap output of round16)
 
-   //there is somthing important here have to change 32 to somthing
+   	 logic [47:0] out1;
+	 logic [47:0] out2;
+	 logic [47:0] out3;
+	 logic [47:0] out4;
+	 logic [47:0] out5;
+	 logic [47:0] out6;
+	 logic [47:0] out7;
+	 logic [47:0] out8;
+	 logic [47:0] out9;
+	 logic [47:0] out10;
+	 logic [47:0] out11;
+	 logic [47:0] out12;
+	 logic [47:0] out13;
+	 logic [47:0] out14;
+	 logic [47:0] out15;
+	 logic [47:0] out16;
+
+
+		//de crip steppin
+	mux m1(encrypt,SubKey1,SubKey16,out1);
+	mux m2(encrypt,SubKey2,SubKey15,out2);
+	mux m3(encrypt,SubKey3,SubKey14,out3);
+	mux m4(encrypt,SubKey4,SubKey13,out4);
+	mux m5(encrypt,SubKey5,SubKey12,out5);
+	mux m6(encrypt,SubKey6,SubKey11,out6);
+	mux m7(encrypt,SubKey7,SubKey10,out7);
+	mux m8(encrypt,SubKey8,SubKey9,out8);
+	mux m9(encrypt,SubKey9,SubKey8,out9);
+	mux m10(encrypt,SubKey10,SubKey7,out10);
+	mux m11(encrypt,SubKey11,SubKey6,out11);
+	mux m12(encrypt,SubKey12,SubKey5,out12);
+	mux m13(encrypt,SubKey13,SubKey4,out13);
+	mux m14(encrypt,SubKey14,SubKey3,out14);
+	mux m15(encrypt,SubKey15,SubKey2,out15);
+	mux m16(encrypt,SubKey16,SubKey1,out16);
+ 
+ 
+   // round 1
+		round r1(left,right,out1,intL1,intR1);//feed out to in
+   // round 2
+		round r2(intL1,intR1,out2,intL2,intR2);
+   // round 3
+		round r3(intL2,intR2,out3,intL3,intR3);
+   // round 4
+		round r4(intL3,intR3,out4,intL4,intR4);
+   // round 5
+		round r5(intL4,intR4,out5,intL5,intR5);
+   // round 6
+		round r6(intL5,intR5,out6,intL6,intR6);
+   // round 7
+		round r7(intL6,intR6,out7,intL7,intR7);
+   // round 8
+		round r8(intL7,intR7,out8,intL8,intR8);
+   // round 9
+		round r9(intL8,intR8,out9,intL9,intR9);
+   // round 10
+		round r10(intL9,intR9,out10,intL10,intR10);
+   // round 11
+		round r11(intL10,intR10,out11,intL11,intR11);
+   // round 12
+		round r12(intL11,intR11,out12,intL12,intR12);
+   // round 13
+		round r13(intL12,intR12,out13,intL13,intR13);
+   // round 14
+		round r14(intL13,intR13,out14,intL14,intR14);
+   // round 15
+		round r15(intL14,intR14,out15,intL15,intR15);
+   // round 16
+		round r16(intL15,intR15,out16,intL16,intR16);
+
+
+
+		
+
+   // Final Permutation (IP^{-1}) (swap output of round16)
+   
    FP FP({r16_out[31:0], r16_out[63:32]}, ciphertext);
    
 endmodule // DES
+
+
+//mux take in 2 keys out one
+module mux(encrypt, first,second,out);
+input logic encrypt;
+input logic [47:0] first;
+input logic [47:0] second;
+output logic [47:0] out;
+
+
+	 assign out = encrypt == 1 ? first : second;
+
+
+endmodule
