@@ -75,10 +75,9 @@ module GenerateKeys (Key, SubKey1, SubKey2, SubKey3, SubKey4,
 //right blocks
 	logic [27:0] right_block1;
 
-
 //subkey1
 
-PC1 PC1_Sub1(Key, left_block1,right_block1);
+PC1 PC1_Sub1(.key(Key), .left_block(left_block1),.right_block(right_block1));
 
 	assign x1 = {left_block1[26:0], left_block1[27]};
 	assign y1 = {right_block1[26:0], right_block1[27]};//shifting bits left once
@@ -202,6 +201,7 @@ PC2 PC2_Sub5 (.left_block(x5),.right_block(y5),.subkey(SubKey5));
 	//assign SubKey16 =  {x16,y16};//combining then back together
 	PC2 PC2_Sub16 (.left_block(x16),.right_block(y16),.subkey(SubKey16));
 
+
 endmodule//key gen
 
 module PC1 (key, left_block, right_block);
@@ -306,26 +306,26 @@ module PC2 (left_block, right_block, subkey);
 	assign subkey[25] =in_block[56-13];
 	assign subkey[24] =in_block[56-2];
 	assign subkey[23] =in_block[56-41];
-	assign subkey[22] =in_block[56-47];
+	assign subkey[22] =in_block[56-52];
 	assign subkey[21] =in_block[56-31];
 	assign subkey[20] =in_block[56-37];
 	assign subkey[19]= in_block[56-47];
-	assign subkey[18]= in_block[56-47];
+	assign subkey[18]= in_block[56-55];
 	assign subkey[17]= in_block[56-30];
 	assign subkey[16]= in_block[56-40];
-	assign subkey[15]= in_block[56-47];
+	assign subkey[15]= in_block[56-51];
 	assign subkey[14]= in_block[56-45];
 	assign subkey[13]= in_block[56-33];
-	assign subkey[12]= in_block[56-47];
+	assign subkey[12]= in_block[56-48];
 	assign subkey[11]= in_block[56-44];
-	assign subkey[10]= in_block[56-47];
-	assign subkey[9]= in_block[47-39];
+	assign subkey[10]= in_block[56-49];
+	assign subkey[9]= in_block[56-39];
 	assign subkey[8]= in_block[56-56];
-	assign subkey[7]= in_block[46-34];
+	assign subkey[7]= in_block[56-34];
 	assign subkey[6]= in_block[56-53];
 	assign subkey[5]= in_block[56-46];
 	assign subkey[4]= in_block[56-42];
-	assign subkey[3]= in_block[56-47];
+	assign subkey[3]= in_block[56-50];
 	assign subkey[2]= in_block[56-36];
 	assign subkey[1] =in_block[56-29];
 	assign subkey[0] =in_block[56-32];
@@ -399,37 +399,37 @@ module EF (inp_block, out_block);
 	assign out_block[33]= inp_block[32-10];
 	assign out_block[32]= inp_block[32-11];
 	assign out_block[31]= inp_block[32-12];
-   assign out_block[30]=inp_block[32-13];
-   assign out_block[29]=inp_block[32-12];
-   assign out_block[28]=inp_block[32-13];
-   assign out_block[27]=inp_block[32-14];
-   assign out_block[26]=inp_block[32-15];
-   assign out_block[25]=inp_block[32-16];
-   assign out_block[24]=inp_block[32-17];
-   assign out_block[23]=inp_block[32-16];
-   assign out_block[22]=inp_block[32-17];
-   assign out_block[21]=inp_block[32-18];
-   assign out_block[20]=inp_block[32-19];
-   assign out_block[19]=inp_block[32-20];
-   assign out_block[18]=inp_block[32-21];
-   assign out_block[17]=inp_block[32-20];
-   assign out_block[16]=inp_block[32-21];
-   assign out_block[15]=inp_block[32-22];
-   assign out_block[14]=inp_block[32-23];
-   assign out_block[13]=inp_block[32-24];
-   assign out_block[12]=inp_block[32-25];
-   assign out_block[11]=inp_block[32-24];
-   assign out_block[10]=inp_block[32-25];
-   assign out_block[9]=inp_block[32-26];
-   assign out_block[8]=inp_block[32-27];
-   assign out_block[7]=inp_block[32-28];
-   assign out_block[6]=inp_block[32-29];
-   assign out_block[5]=inp_block[32-28];
-   assign out_block[4]=inp_block[32-29];
-   assign out_block[3]=inp_block[32-30];
-   assign out_block[2]=inp_block[32-31];
-   assign out_block[1]=inp_block[32-32];
-   assign out_block[0]=inp_block[32-1];
+    assign out_block[30]=inp_block[32-13];
+    assign out_block[29]=inp_block[32-12];
+    assign out_block[28]=inp_block[32-13];
+    assign out_block[27]=inp_block[32-14];
+    assign out_block[26]=inp_block[32-15];
+    assign out_block[25]=inp_block[32-16];
+    assign out_block[24]=inp_block[32-17];
+    assign out_block[23]=inp_block[32-16];
+    assign out_block[22]=inp_block[32-17];
+    assign out_block[21]=inp_block[32-18];
+    assign out_block[20]=inp_block[32-19];
+    assign out_block[19]=inp_block[32-20];
+    assign out_block[18]=inp_block[32-21];
+    assign out_block[17]=inp_block[32-20];
+    assign out_block[16]=inp_block[32-21];
+    assign out_block[15]=inp_block[32-22];
+    assign out_block[14]=inp_block[32-23];
+    assign out_block[13]=inp_block[32-24];
+    assign out_block[12]=inp_block[32-25];
+    assign out_block[11]=inp_block[32-24];
+    assign out_block[10]=inp_block[32-25];
+    assign out_block[9]=inp_block[32-26];
+    assign out_block[8]=inp_block[32-27];
+    assign out_block[7]=inp_block[32-28];
+    assign out_block[6]=inp_block[32-29];
+    assign out_block[5]=inp_block[32-28];
+    assign out_block[4]=inp_block[32-29];
+    assign out_block[3]=inp_block[32-30];
+    assign out_block[2]=inp_block[32-31];
+    assign out_block[1]=inp_block[32-32];
+    assign out_block[0]=inp_block[32-1];
 
 
 
@@ -482,7 +482,7 @@ module round (left_in, right_in, subkey, left_out, right_out);
 
 
 
-endmodule // round1
+endmodule // round
 
 // Initial Permutation
 module IP (inp_block, out_block);
@@ -1309,14 +1309,17 @@ module DES (input logic [63:0] key, input logic [63:0] plaintext,
 	logic[31:0] intR14;
 	logic[31:0] intR15;
 	logic[31:0] intR16;
+	
 
 logic [63:0] 	ip_out;   
-logic [63:0] 	r16_out = 64'h0; 
+logic [63:0] 	r16_out; 
+logic [63:0]  r16D_out
 logic[31:0] left;
 logic[31:0] right;
 
 	assign left= ip_out[63:32];
    	assign right= ip_out[31:0];
+	
 	
 
 
@@ -1350,7 +1353,7 @@ logic[31:0] right;
 	 logic [47:0] out16;
 
 
-		//de crip steppin
+		//de cryp steppin
 	mux m1(encrypt,SubKey1,SubKey16,out1);
 	mux m2(encrypt,SubKey2,SubKey15,out2);
 	mux m3(encrypt,SubKey3,SubKey14,out3);
@@ -1367,48 +1370,58 @@ logic[31:0] right;
 	mux m14(encrypt,SubKey14,SubKey3,out14);
 	mux m15(encrypt,SubKey15,SubKey2,out15);
 	mux m16(encrypt,SubKey16,SubKey1,out16);
+
+
+
+
  
- 
+ // (left_in, right_in, subkey, left_out, right_out);
+
    // round 1
-		round r1(left,right,out1,intL1,intR1);//feed out to in
+		round r1(.left_in(left),.right_in(right),.subkey(out1),.left_out(intL1),.right_out(intR1));
    // round 2
-		round r2(intL1,intR1,out2,intL2,intR2);
+		round r2(.left_in(intL1),.right_in(intR1),.subkey(out2),.left_out(intL2),.right_out(intR2));
+
    // round 3
-		round r3(intL2,intR2,out3,intL3,intR3);
+		round r3(.left_in(intL2),.right_in(intR2),.subkey(out3),.left_out(intL3),.right_out(intR3));
    // round 4
-		round r4(intL3,intR3,out4,intL4,intR4);
+		round r4(.left_in(intL3),.right_in(intR3),.subkey(out4),.left_out(intL4),.right_out(intR4));
    // round 5
-		round r5(intL4,intR4,out5,intL5,intR5);
+		round r5(.left_in(intL4),.right_in(intR4),.subkey(out5),.left_out(intL5),.right_out(intR5));
    // round 6
-		round r6(intL5,intR5,out6,intL6,intR6);
+		round r6(.left_in(intL5),.right_in(intR5),.subkey(out6),.left_out(intL6),.right_out(intR6));
    // round 7
-		round r7(intL6,intR6,out7,intL7,intR7);
+		round r7(.left_in(intL6),.right_in(intR6),.subkey(out7),.left_out(intL7),.right_out(intR7));
    // round 8
-		round r8(intL7,intR7,out8,intL8,intR8);
+		round r8(.left_in(intL7),.right_in(intR7),.subkey(out8),.left_out(intL8),.right_out(intR8));
    // round 9
-		round r9(intL8,intR8,out9,intL9,intR9);
+		round r9(.left_in(intL8),.right_in(intR8),.subkey(out9),.left_out(intL9),.right_out(intR9));
    // round 10
-		round r10(intL9,intR9,out10,intL10,intR10);
+		round r10(.left_in(intL9),.right_in(intR9),.subkey(out10),.left_out(intL10),.right_out(intR10));
    // round 11
-		round r11(intL10,intR10,out11,intL11,intR11);
+		round r11(.left_in(intL10),.right_in(intR10),.subkey(out11),.left_out(intL11),.right_out(intR11));
+
    // round 12
-		round r12(intL11,intR11,out12,intL12,intR12);
+		round r12(.left_in(intL11),.right_in(intR11),.subkey(out12),.left_out(intL12),.right_out(intR12));
    // round 13
-		round r13(intL12,intR12,out13,intL13,intR13);
+		round r13(.left_in(intL12),.right_in(intR12),.subkey(out13),.left_out(intL13),.right_out(intR13));
    // round 14
-		round r14(intL13,intR13,out14,intL14,intR14);
+		round r14(.left_in(intL13),.right_in(intR13),.subkey(out14),.left_out(intL14),.right_out(intR14));
    // round 15
-		round r15(intL14,intR14,out15,intL15,intR15);
+		//round r15(intL14,intR14,out15,intL15,intR15);
+		round r15(.left_in(intL14),.right_in(intR14),.subkey(out15),.left_out(intL15),.right_out(intR15));
    // round 16
-		round r16(intL15,intR15,out16,intL16,intR16);
+		round r16(.left_in(intL15),.right_in(intR15),.subkey(out16),.left_out(intL16),.right_out(intR16));
+		
+		assign r16_out={intR16, intL16};//combi  swap //pc2
+		//assign r16_out=out16;
 
 
 
 		
 
    // Final Permutation (IP^{-1}) (swap output of round16)
-   
-   FP FP({r16_out[31:0], r16_out[63:32]}, ciphertext);
+   FP FP(.inp_block(r16_out), .out_block(ciphertext));  //check FP block make sure inputs and outupts agree
    
 endmodule // DES
 
@@ -1421,6 +1434,7 @@ input logic [47:0] second;
 output logic [47:0] out;
 
 
+//assign out = first;
 	 assign out = encrypt == 1 ? first : second;
 
 
