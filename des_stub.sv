@@ -1313,7 +1313,7 @@ module DES (input logic [63:0] key, input logic [63:0] plaintext,
 
 logic [63:0] 	ip_out;   
 logic [63:0] 	r16_out; 
-logic [63:0]  r16D_out
+
 logic[31:0] left;
 logic[31:0] right;
 
